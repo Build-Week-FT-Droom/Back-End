@@ -87,5 +87,24 @@ router.put('/user/:id', validateToken, (req, res) => {
         });
 });
 
+// AUTH DELETE ROUTES
+
+router.delete('/user/:id', validateToken, (req, res) => {
+    db.destroy(req.params.id)
+        .then(count => {
+            if (count > 0) {
+                res.status(200).json({ message: 'User deleted' });
+            } else {
+                res.status(404).json({ message: 'User could not be found' });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ message: 'Could not delete user' }, error);
+        });
+});
+
+module.exports = router;
+
 
 
