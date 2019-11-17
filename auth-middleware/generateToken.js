@@ -3,13 +3,14 @@ const secrets = require('./secrets.js');
 
 module.exports = (user) => {
     const payload = {
-        subject: user.id,
+        subject: 'user',
         username: user.username
     }
 
-    const secret = 'its a secret to everyone';
+    const secret = secrets.jwtSecret;
     const options = {
         expiresIn: '7d',
     };
-    return jwt.sign(payload, secrets.jwtSecret, options)
+    return jwt.sign(payload, secret, options)
 };
+
