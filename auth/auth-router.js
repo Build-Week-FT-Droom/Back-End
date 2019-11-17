@@ -9,7 +9,7 @@ const validateToken = require('../auth-middleware/validateToken');
 
 router.get('/users', validateToken, (req, res) => {
     db.findUsers()
-        .then(user => {
+        .then(users => {
             res.json({ loggedInUser: req.username, users });
         })
         .catch(err => res.send(err));
