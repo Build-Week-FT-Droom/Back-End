@@ -70,3 +70,19 @@ router.post("/jobs", validateToken, (req, res) => {
     }
 });
 
+router.put("/jobs/:id", validateToken, (req, res) => {
+    const changes = req.body;
+    db.updateJobs(req.params.id, changes)
+        .then(job => {
+            if (job) {
+                res.status(200).json({ message: `Job ${req.params.id} successfully updated` });
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({ message: "Error updating job" }, error);
+        });
+});
+
+
+
