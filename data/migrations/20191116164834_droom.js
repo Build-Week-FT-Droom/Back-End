@@ -27,12 +27,14 @@ exports.up = function(knex) {
         .onDelete('CASCADE')
         .onUpdate('CASCADE');
     jobs.timestamps(true, true);
+    jobs.string('img_url')
+        .defaultTo('https://via.placeholder.com/150');
     jobs.string('title')
         .notNullable();
-    jobs.string('description')
+    jobs.string('salary')
         .notNullable();
-    jobs.string('img_url')
-        .defaultTo('https://via.placeholder.com/150');    
+    jobs.string('description')
+        .notNullable();    
   })
 };
 
