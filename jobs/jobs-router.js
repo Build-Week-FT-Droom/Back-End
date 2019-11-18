@@ -52,3 +52,21 @@ router.get("/jobs/user/:id", (req, res) => {
         .catch(err => res.send(console.log(err)));
 });
 
+// POST JOB
+
+router.post("/jobs", validateToken, (req, res) => {
+    const job = req.body;
+    if (job) {
+        db.insert(job)
+            .then(jobs => {
+                res.status(201).json({ message: "Listing created", job });
+            })
+            .catch(err => {
+                console.log(err)
+                res.status(500).json({ error: "There was an issue when attempting to create this job" });
+            });
+    } else {
+        res.status(400).json({ errorMessage: "Please fill in all required fields" });
+    }
+});
+
