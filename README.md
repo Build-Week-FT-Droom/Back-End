@@ -35,7 +35,7 @@ Sample schema:
 ### GET - User by ID **requires token in header**
 `https://droombw.herokuapp.com/api/auth/user/:id`
 
-(Example: https://droombw.herokuapp.com/api/auth/user/7 will get data for user with the id of '7')
+(Example: `https://droombw.herokuapp.com/api/auth/user/7` will get data for user with the id of '7')
 
 ### PUT - Edit User Info **requires token in header**
 `https://droombw.herokuapp.com/api/auth/user/:id`
