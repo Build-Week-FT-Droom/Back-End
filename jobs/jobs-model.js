@@ -30,17 +30,22 @@ function findJobsByUser(id) {
         .where('j.user_id', id) // fix this
 }
 
-function updateJobs(id) {
-    return db(jobs)
+function updateJobs(update, id) {
+    return db('jobs')
         .where({ id })
-        .update()
+        .update(update)
+        .then((ids) => ids);
 
 }
 
-function insert() {
+function insert(job) {
     return db('jobs')
-        .where('id', id)
-        .insert();
+        // .where('id', id)
+        // .insert();
+        .insert(job, 'id')
+        .then(id => {
+            return findJobsById(id[0])
+        })
 }
 
 function destroy(id) {
