@@ -84,5 +84,18 @@ router.put("/jobs/:id", validateToken, (req, res) => {
         });
 });
 
-
+router.delete("/jobs/:id", validateToken, (req, res) => {
+    const { id } = req.params;
+    db.destroy(id)
+        .then(job => {
+            if (job) {
+                res.status(200).json({ message: `Job ${id} has been deleted` });
+            } else {
+                res.status(404).json({ message: `Job ${id} not found` });
+            }
+        })
+        .catch(error => {
+            res.status(500).json({ error: "Error deleting job" });
+        });
+});
 
