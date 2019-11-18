@@ -1,4 +1,4 @@
-const router = require('express').Router;
+const router = require('express').Router();
 const db = require('../jobs/jobs-model.js');
 const bcrypt = require('bcryptjs');
 const generateToken = require('../auth-middleware/generateToken.js');
@@ -98,4 +98,6 @@ router.delete("/jobs/:id", validateToken, (req, res) => {
             res.status(500).json({ error: "Error deleting job" });
         });
 });
+
+module.exports = router;
 
