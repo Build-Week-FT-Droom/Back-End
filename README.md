@@ -42,3 +42,37 @@ Sample schema:
 
 ### DELETE - Delete User **requires token in header**
 `https://droombw.herokuapp.com/api/auth/user/:id`
+
+
+## Jobs Endpoints
+
+### GET - All Jobs Listings
+`https://droombw.herokuapp.com/api/jobs`
+
+### GET - Jobs Listing By ID
+`https://droombw.herokuapp.com/api/jobs/:id`
+
+### GET - Jobs Listings By User ID
+`https://droombw.herokuapp.com/api/jobs/user/:id`
+
+### POST - New Job **requires token in header**
+`https://droombw.herokuapp.com/api/jobs`
+
+Sample schema: 
+Note: If no image is provided, it will default to a colored box
+```
+{
+    "img_url": "https://ibb.co/8gcLPWj",
+    "title": "Movie Critic",
+    "salary": "$75,000 per year",
+    "description": "Enter description here",
+    "user_id": 1
+}
+```
+### PUT - Edit a Job Listing **requires token in header**
+`https://droombw.herokuapp.com/api/jobs/:id`
+
+### DELETE - Delete a Job Listing **requires token in header**
+`https://droombw.herokuapp.com/api/jobs/:id`
+
+
