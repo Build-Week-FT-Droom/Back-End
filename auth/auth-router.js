@@ -48,7 +48,6 @@ router.post('/register', (req, res) => {
 
 router.post("/login", (req, res) => {
     let { email, password } = req.body;
-res.json({ message: "test" })
     if (email && password) {
         db.findBy({ email })
             .first()
