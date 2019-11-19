@@ -71,18 +71,46 @@ router.post("/jobs", validateToken, (req, res) => {
 });
 
 router.put("/jobs/:id", validateToken, (req, res) => {
+//     const changes = req.body;
+//     db.updateJobs(req.params.id, changes)
+//         .then(job => {
+//             if (job) {
+//                 res.status(200).json({ message: `Job ${req.params.id} successfully updated` });
+//             }
+//         })
+//         .catch(error => {
+//             console.log(error);
+//             res.status(500).json({ message: "Error updating job" });
+//         });
+// });
+const id = req.params.id;
     const changes = req.body;
-    db.updateJobs(req.params.id, changes)
-        .then(job => {
-            if (job) {
-                res.status(200).json({ message: `Job ${req.params.id} successfully updated` });
-            }
+    db.updateJobs(id, changes)
+        .then(updated => {
+            res.status(200).json(updated);
         })
-        .catch(error => {
-            console.log(error);
-            res.status(500).json({ message: "Error updating job" }, error);
+        .catch(err => {
+            res.status(500).json({ error: "Could not modify Id" });
         });
 });
+// router.put('/jobs/:id', (req, res) => {
+//     Events.updateVendor(req.body, req.params.id )
+//     .then(vendor => {
+//         console.log(vendor)
+//         if (!vendor) {
+//             res.status(404).json({message: "No vendor exists by that ID!"})
+//         } else {
+//             Events.getVendorById(req.params.id)
+//             .then(uVendor => {
+//                 res.status(201).json(uVendor)
+//             })
+//         }
+//     })
+//     .catch(err => {
+//         console.log(err)
+//         res.status(500).json(err)
+//     })
+// })
 
 router.delete("/jobs/:id", validateToken, (req, res) => {
     const { id } = req.params;
